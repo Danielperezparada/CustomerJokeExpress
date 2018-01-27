@@ -1,0 +1,37 @@
+{
+  "name": "customerpokeexpress",
+  "version": "1.0.0",
+  "author": "Daniel Perez",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "start-dev": "cross-env NODE_ENV=dev node src/server/server.js",
+    "start": "cross-env NODE_ENV=docker node src/server/server.js",
+    "test": "cross-env NODE_ENV=dev nyc --reporter=lcov mocha --exit src/tests/functional/FUNCTIONAL.js && nyc report",
+    "posttest": "npm run lint && nsp check"
+  },
+  "dependencies": {
+    "ajv": "^6.1.0",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "cross-env": "^5.1.3",
+    "express": "^4.15.3",
+    "knex": "^0.14.2",
+    "pg": "^7.0.2",
+    "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
+    "expect": "^22.1.0",
+    "mocha": "^5.0.0",
+    "nsp": "^3.1.0",
+    "nyc": "11.4.1",
+    "supertest": "^3.0.0"
+  },
+  "license": "UNLICENSED",
+  "description": "customerpokeexpress"
+}

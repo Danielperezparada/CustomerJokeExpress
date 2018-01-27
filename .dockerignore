@@ -1,0 +1,11 @@
+.DS_Store
+.idea
+.npmrc
+.git
+coverage
+karma_out
+npm-debug.log
+test-out
+test_out/unit.xml
+tests
+.github

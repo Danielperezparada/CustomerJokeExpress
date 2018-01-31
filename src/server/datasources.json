@@ -1,0 +1,15 @@
+{
+  "development": {
+    "client": "postgresql",
+    "connection": {
+      "host": "localhost",
+      "port": 5432,
+      "user": "postgres",
+      "password": "qwerty1234",
+      "database": "postgres"
+    },
+    "migrations": {
+      "tableName": "customers"
+    }
+  }
+}

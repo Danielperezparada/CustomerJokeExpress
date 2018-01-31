@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "firstName", "lastName", "dob"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "firstName": { "type": "string" },
+    "lastName": { "type": "string" },
+    "dob": { "type": "string" }
+  }
+}

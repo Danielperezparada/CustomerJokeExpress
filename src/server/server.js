@@ -1,7 +1,6 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const router = require('./routes/customerRoutes');
 const knex = require('../db/knex');
 
 const app = express();
@@ -12,6 +11,8 @@ app.use(bodyParser.urlencoded({
   extended: true,
 }));
 app.use(bodyParser.json());
+
+const router = require('./routes/customerRoutes');
 
 app.use('/api', router);
 

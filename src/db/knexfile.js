@@ -1,4 +1,3 @@
-// Update with your config settings.
 
 module.exports = {
 
@@ -6,7 +5,7 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'postgres',
-      user: 'danielpe',
+      user: 'postgres',
       password: 'qwerty1234',
       host: 'localhost',
       port: 5432,

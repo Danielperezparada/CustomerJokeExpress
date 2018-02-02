@@ -42,7 +42,7 @@ const validateCustomerResponse = args => new Promise((resolve, reject) => {
   return resolve(args);
 });
 
-const customerFindAll = ({
+const customerUpdateById = ({
   customerValidationSchema,
   jsonValidator,
   knex,
@@ -62,4 +62,4 @@ const customerFindAll = ({
 });
 
 
-exports.customerFindAll = customerFindAll;
+exports.customerUpdateById = customerUpdateById;

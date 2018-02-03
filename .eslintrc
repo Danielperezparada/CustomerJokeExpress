@@ -12,6 +12,7 @@
     }],
     "no-plusplus": "off",
     "no-underscore-dangle": "off",
-    "padded-blocks": "off"
+    "padded-blocks": "off",
+    "no-param-reassign": "off"
   }
 }

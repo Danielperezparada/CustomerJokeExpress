@@ -1,17 +1,36 @@
 
 
-const findAllCustomers = args => new Promise((resolve, reject) => {
+const validateInputParameters = args => new Promise((resolve, reject) => {
   const {
+    id,
+    jsonValidator,
+  } = args;
+
+  const validId = jsonValidator.validate({ type: 'string', format: 'uuid' }, id);
+
+  if (!validId) {
+    const err = {
+      error: 'Internal Server Error',
+      error_description: `Error validating response at 'validateInputParameters' due: ${jsonValidator.errorsText()}`,
+      statusCode: 500,
+    };
+    return reject(err);
+  }
+
+  return resolve(args);
+
+});
+
+const deleteCustomerById = args => new Promise((resolve, reject) => {
+  const {
+    id,
     knex,
   } = args;
 
   knex('customers')
-    .select()
-    .then((res) => {
-      console.log(res);
-      args.allCustomers = res;
-      return resolve(args);
-    })
+    .where('id', id)
+    .del()
+    .then(() => resolve())
     .catch((error) => {
       const err = {
         error: 'Internal Server Error',
@@ -22,44 +41,24 @@ const findAllCustomers = args => new Promise((resolve, reject) => {
     });
 });
 
-const validateCustomerResponse = args => new Promise((resolve, reject) => {
-  const {
-    allCustomers,
-    customerValidationSchema,
-    jsonValidator,
-  } = args;
-
-  const valid = jsonValidator.validate(customerValidationSchema, allCustomers);
-  if (!valid) {
-    const err = {
-      error: 'Internal Server Error',
-      error_description: `Error validating response at 'validateCustomerResponse' due: ${jsonValidator.errorsText()}`,
-      statusCode: 500,
-    };
-    return reject(err);
-  }
-
-  return resolve(args);
-});
-
-const customerDelete = ({
-  customerValidationSchema,
+const customerDeleteById = ({
+  id,
   jsonValidator,
   knex,
 }) => new Promise((resolve, reject) => {
 
   const args = {
-    customerValidationSchema,
+    id,
     jsonValidator,
     knex,
   };
 
-  findAllCustomers(args)
-    .then(validateCustomerResponse)
+  validateInputParameters(args)
+    .then(deleteCustomerById)
     .then(resolve)
     .catch(reject);
 
 });
 
 
-exports.customerDelete = customerDelete;
+exports.customerDeleteById = customerDeleteById;
